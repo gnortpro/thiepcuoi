@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<link rel="preload"
+		href="https://fonts.googleapis.com/css?family=Open Sans:bold,regular|Alfa Slab One:bold,regular|Dancing Script:bold,regular&display=swap"
+		as="style" onload="this.onload = null;this.rel = 'stylesheet';">
+
+	<link
+		href="https://fonts.googleapis.com/css?family=Open Sans:bold,regular|Alfa Slab One:bold,regular|Dancing Script:bold,regular&display=swap"
+		rel="stylesheet" type="text/css">
+	<link rel="preload" href="https://w.ladicdn.com/v2/source/ladipage.vi.min.js?v=1642235194530" as="script">
+
+
+	<style>
+		.container {
+			height: 90vh;
+			width: 1280px;
+			position: fixed;
+			border: 1px dashed rgb(193, 11, 1);
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border-radius: 10px;
+			cursor: url("./heart.png"), auto;
+
+		}
+
+		.thiepcuoi {
+			width: 100%;
+			border-radius: 10px;
+			height: 100%;
+			background: url('./bg.jpeg') no-repeat;
+		}
+
+		.ladi-headline {
+			display: inline-block;
+			background-size: cover;
+			background-position: center center;
+		}
+
+		.name {
+			font-family: "Dancing Script", cursive;
+			color: rgb(193, 11, 1);
+			font-size: 65px;
+			font-weight: bold;
+			text-align: center;
+			line-height: 1.2;
+		}
+
+		.parentNameWrapper {
+			display: flex;
+			gap: 50px;
+		}
+
+		.parentNoi,
+		.parentNgoai {
+			color: rgb(193, 11, 1);
+			font-size: 20px;
+			font-weight: bold;
+			line-height: 1.6;
+			margin: 15px auto;
+			display: none;
+		}
+
+		.parentNoi {
+			border-left: 5px solid rgb(15 66 52);
+			padding-left: 30px;
+		}
+
+		.parentNgoai {
+			border-right: 5px solid rgb(15 66 52);
+			padding-right: 50px;
+		}
+
+		.ladi-image .ladi-image-background {
+			background-repeat: no-repeat;
+			background-position: left top;
+			background-size: cover;
+			background-attachment: scroll;
+			background-origin: content-box;
+			position: absolute;
+			margin: 0 auto;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+		}
+
+		.nameWrapper {
+			display: flex;
+			align-items: center;
+		}
+
+		.anhphuthe {
+			flex: 0 0 200px;
+			width: 100%;
+			height: 200px;
+			background: url('./phuthe.png') no-repeat;
+			background-position: center;
+			background-size: contain;
+		}
+
+		.kimtrong {
+			flex: 1 1 30%;
+			justify-content: center;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.hoangquynh {
+			flex: 1 1 30%;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.lethanhhon {
+			margin: 15px auto;
+			text-align: center;
+			width: 100%;
+			font-family: "Alfa Slab One", cursive;
+			color: rgb(193, 11, 1);
+			font-size: 30px;
+			line-height: 1.6;
+		}
+
+		.dateWrapper {
+			display: flex;
+			margin: 20px auto;
+			width: 100%;
+			justify-content: center;
+			align-items: center;
+			font-family: 'Open Sans', sans-serif;
+			gap: 20px;
+		}
+
+		.dateWrapper .center {
+			display: flex;
+			flex-direction: column;
+			margin-top: -15px;
+		}
+
+		.dateWrapper .ladi-headline {
+			color: rgb(193, 11, 1);
+			font-weight: bold;
+			text-align: center;
+		}
+
+		.dateWrapper .thu {
+			font-size: 24px;
+			border-top: 2px solid rgb(15 66 52);
+			border-bottom: 2px solid rgb(15 66 52);
+			padding: 5px 0;
+		}
+
+		.dateWrapper .thang {
+			font-size: 24px;
+			border-top: 2px solid rgb(15 66 52);
+			border-bottom: 2px solid rgb(15 66 52);
+			padding: 5px 0;
+
+		}
+
+		.dateWrapper .gio {
+			font-size: 30px;
+
+		}
+
+		.dateWrapper .nam {
+			font-size: 18px;
+
+		}
+
+		.dateWrapper .ngay {
+			color: rgb(193, 11, 1);
+			font-size: 70px;
+			text-align: center;
+			line-height: 1.6;
+			animation-name: pulse;
+			animation-delay: 1s;
+			animation-duration: 1s;
+			animation-iteration-count: infinite;
+		}
+
+		.addressWrapper {
+			text-align: center;
+		}
+
+		.addressWrapper .tugia {
+			font-family: "Alfa Slab One", cursive;
+			color: rgb(193, 11, 1);
+			font-size: 22px;
+			text-align: center;
+			line-height: 1.6;
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		.addressWrapper .xemmap {
+			font-size: 16px;
+			font-weight: bold;
+			text-decoration: none;
+		}
+
+		.addressWrapper .address {
+			font-family: 'Open Sans', sans-serif;
+			color: rgb(193, 11, 1);
+			font-size: 20px;
+			text-align: center;
+			line-height: 1.6;
+			width: 100%;
+			margin: 0 auto;
+			margin-bottom: 10px;
+			font-weight: bold;
+		}
+
+
+		.kinhmoi span {
+			font-weight: 100;
+		}
+
+		.kinhmoi .hoten {
+			font-weight: bold;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+
+
+		.kinhmoi {
+			width: 100%;
+			font-family: 'Open Sans', sans-serif;
+			color: rgb(193, 11, 1);
+			font-size: 18px;
+			text-align: center;
+			line-height: 1.6;
+			margin-bottom: 20px;
+			display: flex;
+			justify-content: center;
+		}
+
+		.camon {
+			width: 100%;
+			font-family: 'Open Sans', sans-serif;
+			color: rgb(193, 11, 1);
+			font-size: 18px;
+			text-align: center;
+			display: flex;
+			margin-top: 20px;
+			justify-content: center;
+			padding-bottom: 20px;
+		}
+
+		.buttonWrapper {
+			width: 100%;
+			display: flex;
+			margin-top: 20px;
+			justify-content: center;
+		}
+
+		.buttonWrapper button {
+			background: rgb(193, 11, 1);
+			border-radius: 5px;
+			font-family: 'Open Sans', sans-serif;
+			color: white;
+			box-shadow: none;
+			padding: 10px 20px;
+			border: none;
+			font-size: 18px;
+			cursor: pointer;
+		}
+
+		/* .ladi-image {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			pointer-events: none;
+		}
+
+		#IMAGE400 {
+			width: 194.307px;
+			height: 194.307px;
+			top: 550.3px;
+			left: 378.361px;
+		} */
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="thiepcuoi">
+			<div class="nameWrapper">
+				<div class="kimtrong">
+					<div class='ladi-headline name'>Kim Trọng<br></div>
+					<div class='parentNoi'>Ông: Nguyễn Viết Kim<br>Bà: Nguyễn Thị Lan</div>
+				</div>
+				<div class="anhphuthe"></div>
+				<div class='hoangquynh'>
+					<div class='ladi-headline name'>Hoàng Quỳnh<br></div>
+					<div class='parentNgoai'>Ông: Hoàng Danh Dũng
+						<br>Bà: Nguyễn Thị Lưu<br>
+					</div>
+				</div>
+			</div>
+
+			<div class='ladi-headline lethanhhon'><span class="ladipage-animated-headline rotate-3"><span
+						class="ladipage-animated-words-wrapper"
+						data-word="[&quot;LỄ  BÁO  HỶ&quot;,&quot;LỄ  BÁO  HỶ&quot;]">LỄ BÁO HỶ</span></span>
+			</div>
+
+			<div class="kinhmoi">
+				<span>
+					Trân trọng kính mời:
+				</span>
+				<span class="hoten">
+					Đỗ Minh Quyền
+				</span>
+
+				<span>tới dự bữa cơm thân mật, vào lúc</span>
+
+			</div>
+
+
+
+			<div class="dateWrapper">
+				<div class="left">
+					<div class='ladi-headline thu'>THỨ SÁU</div>
+				</div>
+				<div class="center">
+					<div class='ladi-headline gio'>11:00</div>
+					<div class='ngay'>
+						11
+					</div>
+					<div class='ladi-headline nam'>NĂM 2022</div>
+				</div>
+				<div class="right">
+					<div class='ladi-headline thang'>THÁNG 02</div>
+				</div>
+
+			</div>
+
+			<div class="addressWrapper">
+				<div class='tugia'><span class="ladipage-animated-headline rotate-3"><span
+							class="ladipage-animated-words-wrapper"
+							data-word="[&quot;ĐƯỢC TỔ CHỨC TẠI TƯ GIA&quot;,&quot;ĐƯỢC TỔ CHỨC TẠI TƯ GIA&quot;,&quot;ĐƯỢC TỔ CHỨC TẠI TƯ GIA&quot;]">ĐƯỢC
+							TỔ CHỨC TẠI TƯ GIA</span></span></div>
+				<div class="address">Một chỗ nào đấy tại Hà Nội</div>
+
+				<a href="https://www.google.com/maps/place/Vinmec+International+Hospital/@20.9945583,105.8642597,15z/data=!4m5!3m4!1s0x3135ac04daecb877:0xef1e1e02b64fcb4c!8m2!3d20.9963658!4d105.8672042"
+					class="xemmap">Xem map</a>
+			</div>
+
+			<div class="buttonWrapper">
+				<button class="thamgiaButton">
+					Ok! Tham gia luôn ...
+				</button>
+			</div>
+
+			<div class="camon">SỰ HIỆN DIỆN CỦA QUÝ KHÁCH LÀ NIỀM VINH HẠNH CHO GIA ĐÌNH CHÚNG TÔI</div>
+
+
+		</div>
+	</div>
+	<link href="https://w.ladicdn.com/v2/source/ladipage.min.css?v=1642235194530" rel="stylesheet" type="text/css">
+	<script src="https://w.ladicdn.com/v2/source/ladipage.vi.min.js?v=1642235194530" type="text/javascript"></script>
+
+	<script>
+		(function () {
+			var run = function () {
+				if (typeof window.LadiPageScript == "undefined" || window.LadiPageScript == undefined || typeof window.ladi == "undefined" || window.ladi == undefined) {
+					setTimeout(run, 100);
+					return;
+				}
+				window.LadiPageApp = window.LadiPageApp || new window.LadiPageAppV2();
+				window.LadiPageScript.runtime.ladipage_id = '61d29aef52ae2800120fcbf2';
+				window.LadiPageScript.runtime.publish_platform = 'LADIPAGEDNS';
+				window.LadiPageScript.runtime.is_mobile_only = false;
+				window.LadiPageScript.runtime.bodyFontSize = 12;
+				window.LadiPageScript.runtime.store_id = "5d9a96b88c0aa631d811d695";
+				window.LadiPageScript.runtime.time_zone = 7;
+				window.LadiPageScript.runtime.currency = "VND";
+				window.LadiPageScript.runtime.convert_replace_str = true;
+				window.LadiPageScript.runtime.desktop_width = 960;
+				window.LadiPageScript.runtime.mobile_width = 420;
+				window.LadiPageScript.runtime.eventData = "%7B%22SECTION_POPUP%22%3A%7B%22type%22%3A%22section%22%2C%22desktop.option.background-style%22%3A%22solid%22%2C%22mobile.option.background-style%22%3A%22solid%22%7D%2C%22SECTION1%22%3A%7B%22type%22%3A%22section%22%2C%22desktop.option.background-style%22%3A%22image%22%2C%22mobile.option.background-style%22%3A%22image%22%7D%2C%22HEADLINE6%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE13%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE14%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE15%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%2C%22desktop.style.animation-name%22%3A%22pulse%22%2C%22desktop.style.animation-delay%22%3A%221s%22%2C%22mobile.style.animation-name%22%3A%22pulse%22%2C%22mobile.style.animation-delay%22%3A%221s%22%7D%2C%22HEADLINE16%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22COUNTDOWN18%22%3A%7B%22type%22%3A%22countdown%22%2C%22option.countdown_type%22%3A%22endtime%22%2C%22option.countdown_endtime%22%3A1641798000000%7D%2C%22COUNTDOWN_ITEM19%22%3A%7B%22type%22%3A%22countdown_item%22%2C%22option.countdown_item_type%22%3A%22day%22%7D%2C%22COUNTDOWN_ITEM20%22%3A%7B%22type%22%3A%22countdown_item%22%2C%22option.countdown_item_type%22%3A%22hour%22%7D%2C%22COUNTDOWN_ITEM21%22%3A%7B%22type%22%3A%22countdown_item%22%2C%22option.countdown_item_type%22%3A%22minute%22%7D%2C%22COUNTDOWN_ITEM22%22%3A%7B%22type%22%3A%22countdown_item%22%2C%22option.countdown_item_type%22%3A%22seconds%22%7D%2C%22HEADLINE23%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22IMAGE39%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GROUP40%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22bounceInDown%22%2C%22desktop.style.animation-delay%22%3A%221s%22%7D%2C%22IMAGE43%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GROUP41%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22bounceInDown%22%2C%22desktop.style.animation-delay%22%3A%221s%22%7D%2C%22IMAGE45%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22SECTION62%22%3A%7B%22type%22%3A%22section%22%2C%22desktop.option.background-style%22%3A%22image%22%2C%22mobile.option.background-style%22%3A%22image%22%7D%2C%22HEADLINE68%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22IMAGE69%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22IMAGE138%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GROUP141%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInY%22%2C%22desktop.style.animation-delay%22%3A%221.5s%22%2C%22mobile.style.animation-name%22%3A%22flipInY%22%2C%22mobile.style.animation-delay%22%3A%221.5s%22%7D%2C%22IMAGE144%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GROUP142%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInY%22%2C%22desktop.style.animation-delay%22%3A%221.5s%22%2C%22mobile.style.animation-name%22%3A%22flipInY%22%2C%22mobile.style.animation-delay%22%3A%221.5s%22%7D%2C%22IMAGE154%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22IMAGE157%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22IMAGE160%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22IMAGE165%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22SECTION167%22%3A%7B%22type%22%3A%22section%22%2C%22desktop.option.background-style%22%3A%22solid%22%2C%22mobile.option.background-style%22%3A%22solid%22%7D%2C%22HEADLINE181%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GT%22%3A%7B%22type%22%3A%22section%22%2C%22desktop.option.background-style%22%3A%22image%22%2C%22mobile.option.background-style%22%3A%22image%22%7D%2C%22AB%22%3A%7B%22type%22%3A%22section%22%2C%22desktop.option.background-style%22%3A%22image%22%2C%22mobile.option.background-style%22%3A%22image%22%7D%2C%22GROUP200%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInY%22%2C%22desktop.style.animation-delay%22%3A%222s%22%2C%22mobile.style.animation-name%22%3A%22flipInY%22%2C%22mobile.style.animation-delay%22%3A%222s%22%7D%2C%22GROUP201%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInY%22%2C%22desktop.style.animation-delay%22%3A%222s%22%2C%22mobile.style.animation-name%22%3A%22flipInY%22%2C%22mobile.style.animation-delay%22%3A%222s%22%7D%2C%22GROUP202%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInX%22%2C%22desktop.style.animation-delay%22%3A%221s%22%2C%22mobile.style.animation-name%22%3A%22flipInX%22%2C%22mobile.style.animation-delay%22%3A%221s%22%7D%2C%22IMAGE207%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GROUP206%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInX%22%2C%22desktop.style.animation-delay%22%3A%221s%22%2C%22mobile.style.animation-name%22%3A%22flipInX%22%2C%22mobile.style.animation-delay%22%3A%221s%22%7D%2C%22IMAGE210%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GROUP209%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInY%22%2C%22desktop.style.animation-delay%22%3A%221.5s%22%2C%22mobile.style.animation-name%22%3A%22flipInY%22%2C%22mobile.style.animation-delay%22%3A%221.5s%22%7D%2C%22IMAGE213%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GROUP212%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInY%22%2C%22desktop.style.animation-delay%22%3A%221.5s%22%2C%22mobile.style.animation-name%22%3A%22flipInY%22%2C%22mobile.style.animation-delay%22%3A%221.5s%22%7D%2C%22IMAGE216%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GROUP215%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInX%22%2C%22desktop.style.animation-delay%22%3A%221s%22%2C%22mobile.style.animation-name%22%3A%22flipInX%22%2C%22mobile.style.animation-delay%22%3A%221s%22%7D%2C%22GROUP218%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInX%22%2C%22desktop.style.animation-delay%22%3A%221s%22%2C%22mobile.style.animation-name%22%3A%22flipInX%22%2C%22mobile.style.animation-delay%22%3A%221s%22%7D%2C%22HEADLINE325%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%2C%22desktop.style.animation-name%22%3A%22pulse%22%2C%22mobile.style.animation-name%22%3A%22pulse%22%7D%2C%22GROUP326%22%3A%7B%22type%22%3A%22group%22%2C%22option.data_event%22%3A%5B%7B%22type%22%3A%22popup%22%2C%22action%22%3A%22mungthiep%22%2C%22action_type%22%3A%22action%22%7D%5D%7D%2C%22FORM345%22%3A%7B%22type%22%3A%22form%22%2C%22option.form_config_id%22%3A%22614918a67fd7c10014b9074a%22%2C%22option.form_send_ladipage%22%3Atrue%2C%22option.thankyou_type%22%3A%22popup%22%2C%22option.thankyou_value%22%3A%22THANKS%22%2C%22option.form_auto_funnel%22%3Atrue%2C%22option.form_captcha%22%3Atrue%2C%22option.form_auto_complete%22%3Atrue%2C%22option.is_form_coupon%22%3Afalse%2C%22option.is_form_login%22%3Afalse%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22BUTTON346%22%3A%7B%22type%22%3A%22button%22%2C%22option.is_submit_form%22%3Afalse%2C%22option.is_buy_now%22%3Afalse%2C%22option.data_setting.type_dataset%22%3A%22COLLECTION%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22BUTTON_TEXT346%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%2C%22desktop.style.animation-name%22%3A%22pulse%22%2C%22desktop.style.animation-delay%22%3A%221s%22%2C%22mobile.style.animation-name%22%3A%22pulse%22%2C%22mobile.style.animation-delay%22%3A%221s%22%7D%2C%22FORM_ITEM347%22%3A%7B%22type%22%3A%22form_item%22%2C%22option.input_type%22%3A%22text%22%2C%22option.input_tabindex%22%3A1%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22FORM_ITEM350%22%3A%7B%22type%22%3A%22form_item%22%2C%22option.input_type%22%3A%22textarea%22%2C%22option.input_tabindex%22%3A4%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE351%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE353%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22IMAGE356%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22mungthiep%22%3A%7B%22type%22%3A%22popup%22%2C%22desktop.option.popup_position%22%3A%22default%22%2C%22desktop.option.popup_backdrop%22%3A%22background-color%3A%20rgba(0%2C%200%2C%200%2C%200.5)%3B%22%2C%22mobile.option.popup_position%22%3A%22default%22%2C%22mobile.option.popup_backdrop%22%3A%22background-color%3A%20rgba(0%2C%200%2C%200%2C%200.5)%3B%22%7D%2C%22HEADLINE380%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22THANKS%22%3A%7B%22type%22%3A%22popup%22%2C%22desktop.option.popup_position%22%3A%22default%22%2C%22desktop.option.popup_backdrop%22%3A%22background-color%3A%20rgba(0%2C%200%2C%200%2C%200.5)%3B%22%2C%22mobile.option.popup_position%22%3A%22default%22%2C%22mobile.option.popup_backdrop%22%3A%22background-color%3A%20rgba(0%2C%200%2C%200%2C%200.5)%3B%22%7D%2C%22HEADLINE382%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE384%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE387%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22IMAGE389%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%2C%22desktop.style.animation-name%22%3A%22pulse%22%2C%22desktop.style.animation-delay%22%3A%220s%22%2C%22mobile.style.animation-name%22%3A%22pulse%22%2C%22mobile.style.animation-delay%22%3A%220s%22%7D%2C%22HEADLINE393%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_event%22%3A%5B%7B%22type%22%3A%22section%22%2C%22action%22%3A%22GT%22%2C%22action_type%22%3A%22action%22%7D%5D%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE395%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_event%22%3A%5B%7B%22type%22%3A%22section%22%2C%22action%22%3A%22AB%22%2C%22action_type%22%3A%22action%22%7D%5D%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE398%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE399%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22IMAGE400%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE402%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE407%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE409%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_event%22%3A%5B%7B%22type%22%3A%22popup%22%2C%22action%22%3A%22mungthiep%22%2C%22action_type%22%3A%22action%22%7D%5D%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE411%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE412%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE416%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE417%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE462%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE463%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE467%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_event%22%3A%5B%7B%22type%22%3A%22section%22%2C%22action%22%3A%22AB%22%2C%22action_type%22%3A%22action%22%7D%5D%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GROUP468%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.option.sticky%22%3Atrue%2C%22desktop.option.sticky_position%22%3A%22top%22%2C%22desktop.option.sticky_position_top%22%3A%2210px%22%2C%22desktop.option.sticky_position_left%22%3A%220px%22%2C%22desktop.option.sticky_position_bottom%22%3A%2211px%22%2C%22desktop.option.sticky_position_right%22%3A%220px%22%2C%22mobile.option.sticky%22%3Atrue%2C%22mobile.option.sticky_position%22%3A%22top%22%2C%22mobile.option.sticky_position_top%22%3A%226px%22%2C%22mobile.option.sticky_position_left%22%3A%220px%22%2C%22mobile.option.sticky_position_bottom%22%3A%220px%22%2C%22mobile.option.sticky_position_right%22%3A%220px%22%7D%2C%22HEADLINE476%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE477%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22SECTION473%22%3A%7B%22type%22%3A%22section%22%2C%22desktop.option.background-style%22%3A%22image%22%2C%22mobile.option.background-style%22%3A%22image%22%7D%2C%22IMAGE478%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22HEADLINE479%22%3A%7B%22type%22%3A%22headline%22%2C%22option.data_setting.sort_name%22%3A%22created_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22IMAGE489%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GROUP488%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInX%22%2C%22desktop.style.animation-delay%22%3A%221s%22%2C%22mobile.style.animation-name%22%3A%22flipInX%22%2C%22mobile.style.animation-delay%22%3A%221s%22%7D%2C%22IMAGE493%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GROUP492%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInX%22%2C%22desktop.style.animation-delay%22%3A%221s%22%2C%22mobile.style.animation-name%22%3A%22flipInX%22%2C%22mobile.style.animation-delay%22%3A%221s%22%7D%2C%22IMAGE496%22%3A%7B%22type%22%3A%22image%22%2C%22option.data_setting.sort_name%22%3A%22updated_at%22%2C%22option.data_setting.sort_by%22%3A%22desc%22%7D%2C%22GROUP495%22%3A%7B%22type%22%3A%22group%22%2C%22desktop.style.animation-name%22%3A%22flipInX%22%2C%22desktop.style.animation-delay%22%3A%221s%22%2C%22mobile.style.animation-name%22%3A%22flipInX%22%2C%22mobile.style.animation-delay%22%3A%221s%22%7D%7D";
+				window.LadiPageScript.run(true);
+				window.LadiPageScript.runEventScroll();
+			};
+			run();
+		})();
+	</script>
+	<script type="text/javascript">
+		// <![CDATA[
+		var colours = new Array('#f00', '#f06', '#f0f', '#f6f', '#f39', '#f9c'); // colours of the hearts
+		var minisize = 16; // smallest size of hearts in pixels
+		var maxisize = 28; // biggest size of hearts in pixels
+		var hearts = 66; // maximum number of hearts on screen
+		var over_or_under = "over"; // set to "over" for hearts to always be on top, or "under" to allow them to float behind other objects
+
+		/*****************************
+		*JavaScript Love Heart Cursor*
+		*  (c)2013+ mf2fm web-design *
+		*   http://www.mf2fm.com/rv  *
+		*  DON'T EDIT BELOW THIS BOX *
+		*****************************/
+		var x = ox = 400;
+		var y = oy = 300;
+		var swide = 800;
+		var shigh = 600;
+		var sleft = sdown = 0;
+		var herz = new Array();
+		var herzx = new Array();
+		var herzy = new Array();
+		var herzs = new Array();
+		var kiss = false;
+
+		if (typeof ('addRVLoadEvent') != 'function') function addRVLoadEvent(funky) {
+			var oldonload = window.onload;
+			if (typeof (oldonload) != 'function') window.onload = funky;
+			else window.onload = function () {
+				if (oldonload) oldonload();
+				funky();
+			}
+		}
+
+		addRVLoadEvent(mwah);
+
+		function mwah() {
+			if (document.getElementById) {
+				var i, heart;
+				for (i = 0; i < hearts; i++) {
+					heart = createDiv("auto", "auto");
+					heart.style.visibility = "hidden";
+					heart.style.zIndex = (over_or_under == "over") ? "1001" : "0";
+					heart.style.color = colours[i % colours.length];
+					heart.style.pointerEvents = "none";
+					if (navigator.appName == "Microsoft Internet Explorer") heart.style.filter = "alpha(opacity=75)";
+					else heart.style.opacity = 0.75;
+					heart.appendChild(document.createTextNode(String.fromCharCode(9829)));
+					document.body.appendChild(heart);
+					herz[i] = heart;
+					herzy[i] = false;
+				}
+				set_scroll();
+				set_width();
+				herzle();
+			}
+		}
+
+		function herzle() {
+			var c;
+			if (Math.abs(x - ox) > 1 || Math.abs(y - oy) > 1) {
+				ox = x;
+				oy = y;
+				for (c = 0; c < hearts; c++) if (herzy[c] === false) {
+					herz[c].firstChild.nodeValue = String.fromCharCode(9829);
+					herz[c].style.left = (herzx[c] = x - minisize / 2) + "px";
+					herz[c].style.top = (herzy[c] = y - minisize) + "px";
+					herz[c].style.fontSize = minisize + "px";
+					herz[c].style.fontWeight = 'normal';
+					herz[c].style.visibility = 'visible';
+					herzs[c] = minisize;
+					break;
+				}
+			}
+			for (c = 0; c < hearts; c++) if (herzy[c] !== false) blow_me_a_kiss(c);
+			setTimeout("herzle()", 40);
+		}
+
+		document.onmousedown = pucker;
+		document.onmouseup = function () { clearTimeout(kiss); };
+
+		function pucker() {
+			ox = -1;
+			oy = -1;
+			kiss = setTimeout('pucker()', 100);
+		}
+
+		function blow_me_a_kiss(i) {
+			herzy[i] -= herzs[i] / minisize + i % 2;
+			herzx[i] += (i % 5 - 2) / 5;
+			if (herzy[i] < sdown - herzs[i] || herzx[i] < sleft - herzs[i] || herzx[i] > sleft + swide - herzs[i]) {
+				herz[i].style.visibility = "hidden";
+				herzy[i] = false;
+			}
+			else if (herzs[i] > minisize + 2 && Math.random() < .5 / hearts) break_my_heart(i);
+			else {
+				if (Math.random() < maxisize / herzy[i] && herzs[i] < maxisize) herz[i].style.fontSize = (++herzs[i]) + "px";
+				herz[i].style.top = herzy[i] + "px";
+				herz[i].style.left = herzx[i] + "px";
+			}
+		}
+
+		function break_my_heart(i) {
+			var t;
+			herz[i].firstChild.nodeValue = String.fromCharCode(9676);
+			herz[i].style.fontWeight = 'bold';
+			herzy[i] = false;
+			for (t = herzs[i]; t <= maxisize; t++) setTimeout('herz[' + i + '].style.fontSize="' + t + 'px"', 60 * (t - herzs[i]));
+			setTimeout('herz[' + i + '].style.visibility="hidden";', 60 * (t - herzs[i]));
+		}
+
+		document.onmousemove = mouse;
+		function mouse(e) {
+			if (e) {
+				y = e.pageY;
+				x = e.pageX;
+			}
+			else {
+				set_scroll();
+				y = event.y + sdown;
+				x = event.x + sleft;
+			}
+		}
+
+		window.onresize = set_width;
+		function set_width() {
+			var sw_min = 999999;
+			var sh_min = 999999;
+			if (document.documentElement && document.documentElement.clientWidth) {
+				if (document.documentElement.clientWidth > 0) sw_min = document.documentElement.clientWidth;
+				if (document.documentElement.clientHeight > 0) sh_min = document.documentElement.clientHeight;
+			}
+			if (typeof (self.innerWidth) == 'number' && self.innerWidth) {
+				if (self.innerWidth > 0 && self.innerWidth < sw_min) sw_min = self.innerWidth;
+				if (self.innerHeight > 0 && self.innerHeight < sh_min) sh_min = self.innerHeight;
+			}
+			if (document.body.clientWidth) {
+				if (document.body.clientWidth > 0 && document.body.clientWidth < sw_min) sw_min = document.body.clientWidth;
+				if (document.body.clientHeight > 0 && document.body.clientHeight < sh_min) sh_min = document.body.clientHeight;
+			}
+			if (sw_min == 999999 || sh_min == 999999) {
+				sw_min = 800;
+				sh_min = 600;
+			}
+			swide = sw_min;
+			shigh = sh_min;
+		}
+
+		window.onscroll = set_scroll;
+		function set_scroll() {
+			if (typeof (self.pageYOffset) == 'number') {
+				sdown = self.pageYOffset;
+				sleft = self.pageXOffset;
+			}
+			else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+				sdown = document.body.scrollTop;
+				sleft = document.body.scrollLeft;
+			}
+			else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+				sleft = document.documentElement.scrollLeft;
+				sdown = document.documentElement.scrollTop;
+			}
+			else {
+				sdown = 0;
+				sleft = 0;
+			}
+		}
+
+		function createDiv(height, width) {
+			var div = document.createElement("div");
+			div.style.position = "absolute";
+			div.style.height = height;
+			div.style.width = width;
+			div.style.overflow = "hidden";
+			div.style.backgroundColor = "transparent";
+			return (div);
+		}
+		// ]]>
+	</script>
+</body>
+
+</html>
