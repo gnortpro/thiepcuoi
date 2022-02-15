@@ -18,16 +18,29 @@
 
 
 	<style>
-		.container {
+		body {
 			height: 90vh;
+			position: relative;
+			padding: 30px;
+		}
+
+		.container {
+			/* height: 90vh;
 			width: 1280px;
-			position: fixed;
 			border: 1px dashed rgb(193, 11, 1);
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%); */
+			position: absolute;
 			border-radius: 10px;
 			cursor: url("./heart.png"), auto;
+			width: 1280px;
+			background-color: red;
+			/* Center vertically and horizontally */
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 
 		}
 
