@@ -4,7 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta id="viewport" name="viewport"
+		content="width=420, user-scalable=no, initial-scale=0.9523809523809523, minimum-scale=0.9523809523809523, maximum-scale=0.9523809523809523">
 	<title>Document</title>
 
 	<link rel="preload"
@@ -18,9 +19,12 @@
 
 
 	<style>
+		body {
+			font-family: "Open Sans", sans-serif
+		}
+
 		.container {
 			height: 90vh;
-			width: 1280px;
 			position: fixed;
 			border: 1px dashed rgb(193, 11, 1);
 			top: 50%;
@@ -134,7 +138,6 @@
 			width: 100%;
 			justify-content: center;
 			align-items: center;
-			font-family: 'Open Sans', sans-serif;
 			gap: 20px;
 		}
 
@@ -238,8 +241,6 @@
 			text-align: center;
 			line-height: 1.6;
 			margin-bottom: 20px;
-			display: flex;
-			justify-content: center;
 		}
 
 		.camon {
@@ -287,6 +288,23 @@
 			top: 550.3px;
 			left: 378.361px;
 		} */
+		@media (min-width: 768px) {
+			.container {
+				width: 960px;
+			}
+		}
+
+		@media (max-width: 767px) {
+			.container {
+				width: 420px;
+			}
+		}
+
+		/* mobile */
+		@media (max-width: 767px) {}
+
+		/* tablet */
+		@media (min-width:768px) {}
 	</style>
 </head>
 
@@ -313,14 +331,11 @@
 			</div>
 
 			<div class="kinhmoi">
-				<span>
-					Trân trọng kính mời:
-				</span>
+				Trân trọng kính mời:
 				<span class="hoten">
 					Đỗ Minh Quyền
 				</span>
-
-				<span>tới dự bữa cơm thân mật, vào lúc</span>
+				tới dự bữa cơm thân mật, vào lúc
 
 			</div>
 
@@ -362,8 +377,8 @@
 
 			<div class="camon">SỰ HIỆN DIỆN CỦA QUÝ KHÁCH LÀ NIỀM VINH HẠNH CHO GIA ĐÌNH CHÚNG TÔI</div>
 
-
 		</div>
+
 	</div>
 	<link href="https://w.ladicdn.com/v2/source/ladipage.min.css?v=1642235194530" rel="stylesheet" type="text/css">
 	<script src="https://w.ladicdn.com/v2/source/ladipage.vi.min.js?v=1642235194530" type="text/javascript"></script>
